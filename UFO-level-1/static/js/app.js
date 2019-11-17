@@ -36,6 +36,23 @@ var handleInput = () => {
   var filteredData = tableData.filter(data => data.datetime === inputValue);
   console.log(filteredData)
 
+  // Then, select the unordered list element by class name
+  var list = d3.select("tbody");
+
+  // remove any children from the list to
+  list.html("");
+
+  //append new results
+  filteredData.forEach((filteredData) => {
+  var row = tbody.append("tr");
+  
+  Object.entries(filteredData).forEach(([key, value]) => {
+    var cell = row.append("td");
+    cell.text(value);
+    });
+  });
+
+
 };
 
 // button.on("click", handleInput);
@@ -43,6 +60,4 @@ button.on('click', handleInput);
 
 //Enter Key Fix
 d3.select("form").on('submit', handleInput);
-
-//will need to loop through filtered results to display new table.
 
