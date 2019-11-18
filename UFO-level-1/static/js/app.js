@@ -13,11 +13,12 @@ data.forEach((ufoSightings) => {
     });
   });
 
+
 //filter button
 var button = d3.select("#filter-btn");
 
 //function for refresh stop.
-var handleInput = () => {
+var dateFilter = () => {
   //Enter key Fix
   d3.event.preventDefault();
   
@@ -43,21 +44,19 @@ var handleInput = () => {
   list.html("");
 
   //append new results
-  filteredData.forEach((filteredData) => {
+filteredData.forEach((filteredData) => {
   var row = tbody.append("tr");
-  
   Object.entries(filteredData).forEach(([key, value]) => {
-    var cell = row.append("td");
-    cell.text(value);
-    });
+  var cell = row.append("td");
+  cell.text(value);
   });
-
+});
 
 };
 
 // button.on("click", handleInput);
-button.on('click', handleInput);
+button.on('click', dateFilter);
 
 //Enter Key Fix
-d3.select("form").on('submit', handleInput);
+d3.select("form").on('submit', dateFilter);
 
